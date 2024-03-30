@@ -12,7 +12,7 @@ pygame.display.set_caption("Wordle Clone")
 # Set up the clock
 clock = pygame.time.Clock()
 
-# Set up the colors
+# Set up the colours
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREEN = (108,169,101)
@@ -20,9 +20,9 @@ YELLOW = (200,182,83)
 GREY = (120,124,127)
 DARK_GREY = (18,18,19)
 
-BACKGROUND_COLOR = WHITE
-TEXT_COLOR = BLACK
-GRID_COLOR = BLACK
+BACKGROUND_COLOUR = WHITE
+TEXT_COLOUR = BLACK
+GRID_COLOUR = BLACK
 
 # Set up the font
 font = pygame.font.Font(None, 36)
@@ -31,7 +31,7 @@ font = pygame.font.Font(None, 36)
 clock.tick(60)
 
 # Set up background
-screen.fill(BACKGROUND_COLOR)
+screen.fill(BACKGROUND_COLOUR)
 
 # Draw the grid
 cell_width = 75
@@ -88,7 +88,7 @@ for row in range(grid_height):
     for col in range(grid_width):
         x = grid_start_x + col * cell_width
         y = grid_start_y + row * cell_height
-        pygame.draw.rect(screen, GRID_COLOR, (x, y, cell_width, cell_height), border_width)
+        pygame.draw.rect(screen, GRID_COLOUR, (x, y, cell_width, cell_height), border_width)
 
 # Set up the QWERTY keyboard
 qwerty_layout = [
@@ -114,8 +114,8 @@ for row_index, row in enumerate(qwerty_layout):
         else:
             key_x = keyboard_start_x + col_index * cell_width
         key_y = keyboard_start_y + row_index * cell_height
-        pygame.draw.rect(screen, GRID_COLOR, (key_x, key_y, cell_width, cell_height), border_width)
-        text = font.render(char, True, TEXT_COLOR)
+        pygame.draw.rect(screen, GRID_COLOUR, (key_x, key_y, cell_width, cell_height), border_width)
+        text = font.render(char, True, TEXT_COLOUR)
         text_rect = text.get_rect(center=(key_x + cell_width // 2, key_y + cell_height // 2))
         screen.blit(text, text_rect)
 
@@ -126,7 +126,7 @@ col = 0
 # Initialize key log
 key_log = [None] * grid_width
 
-# Create a dictionary to store guessed letters and their colors
+# Create a dictionary to store guessed letters and their colours
 guessed_letters = {}
 
 # Game state variable
@@ -153,14 +153,14 @@ while running:
             key_log[col] = str(key)
 
             # Set the text of the grid cell to the key pressed
-            text = font.render(str(key), True, TEXT_COLOR)
+            text = font.render(str(key), True, TEXT_COLOUR)
 
             # Calculate the position of the grid cell based on the current row and column
             x = grid_start_x + col * cell_width
             y = grid_start_y + row * cell_height
 
             # Draw the updated grid cell
-            pygame.draw.rect(screen, GRID_COLOR, (x, y, cell_width, cell_height), border_width)
+            pygame.draw.rect(screen, GRID_COLOUR, (x, y, cell_width, cell_height), border_width)
             screen.blit(text, (x + cell_width // 2 - text.get_width() // 2, y + cell_height // 2 - text.get_height() // 2))
 
             # Increment the current cell by 1
@@ -181,8 +181,8 @@ while running:
                 # Clear the cell
                 x = grid_start_x + col * cell_width
                 y = grid_start_y + row * cell_height
-                pygame.draw.rect(screen, BACKGROUND_COLOR, (x, y, cell_width, cell_height))
-                pygame.draw.rect(screen, GRID_COLOR, (x, y, cell_width, cell_height), border_width)
+                pygame.draw.rect(screen, BACKGROUND_COLOUR, (x, y, cell_width, cell_height))
+                pygame.draw.rect(screen, GRID_COLOUR, (x, y, cell_width, cell_height), border_width)
                 pygame.display.update()
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
@@ -197,8 +197,8 @@ while running:
                     for col in range(grid_width):
                         x = grid_start_x + col * cell_width
                         y = grid_start_y + row * cell_height
-                        pygame.draw.rect(screen, BACKGROUND_COLOR, (x, y, cell_width, cell_height))
-                        pygame.draw.rect(screen, GRID_COLOR, (x, y, cell_width, cell_height), border_width)
+                        pygame.draw.rect(screen, BACKGROUND_COLOUR, (x, y, cell_width, cell_height))
+                        pygame.draw.rect(screen, GRID_COLOUR, (x, y, cell_width, cell_height), border_width)
                     
                     # Reset the column and row
                     col = 0
@@ -214,9 +214,9 @@ while running:
                         for col in range(grid_width):
                             x = grid_start_x + col * cell_width
                             y = grid_start_y + winning_row * cell_height
-                            text = font.render(key_log[col], True, TEXT_COLOR)
+                            text = font.render(key_log[col], True, TEXT_COLOUR)
                             pygame.draw.rect(screen, GREEN, (x, y, cell_width, cell_height))
-                            pygame.draw.rect(screen, GRID_COLOR, (x, y, cell_width, cell_height), border_width)
+                            pygame.draw.rect(screen, GRID_COLOUR, (x, y, cell_width, cell_height), border_width)
                             screen.blit(text, (x + cell_width // 2 - text.get_width() // 2, y + cell_height // 2 - text.get_height() // 2))
                         game_won = True
                     else:
@@ -224,7 +224,7 @@ while running:
                         for col in range(grid_width):
                             x = grid_start_x + col * cell_width
                             y = grid_start_y + row * cell_height
-                            text = font.render(key_log[col], True, TEXT_COLOR)
+                            text = font.render(key_log[col], True, TEXT_COLOUR)
                             if position_array[col] == "Green":
                                 pygame.draw.rect(screen, GREEN, (x, y, cell_width, cell_height))
                             elif position_array[col] == "Yellow":
@@ -232,10 +232,10 @@ while running:
                             elif position_array[col] == "Grey":
                                 pygame.draw.rect(screen, GREY, (x, y, cell_width, cell_height))
                             #Redraw the border
-                            pygame.draw.rect(screen, GRID_COLOR, (x, y, cell_width, cell_height), border_width)
+                            pygame.draw.rect(screen, GRID_COLOUR, (x, y, cell_width, cell_height), border_width)
                             screen.blit(text, (x + cell_width // 2 - text.get_width() // 2, y + cell_height // 2 - text.get_height() // 2))
                     
-                    # Update guessed_letters dictionary with the guessed letters and their colors
+                    # Update guessed_letters dictionary with the guessed letters and their colours
                     for i, letter in enumerate(key_log):
                         if letter not in guessed_letters:
                             guessed_letters[letter] = position_array[i]
@@ -245,7 +245,7 @@ while running:
                             elif guessed_letters[letter] == "Yellow" and position_array[i] == "Green":
                                 guessed_letters[letter] = position_array[i]
                     
-                    # Redraw the keyboard with updated colors
+                    # Redraw the keyboard with updated colours
                     for row_index, keyboard_row in enumerate(qwerty_layout):
                         for col_index, char in enumerate(keyboard_row):
                             # Apply an offset to the second and third rows
@@ -256,19 +256,19 @@ while running:
                             else:
                                 key_x = keyboard_start_x + col_index * cell_width
                             key_y = keyboard_start_y + row_index * cell_height
-                            # Determine the color for the current key based on comparison result
+                            # Determine the colour for the current key based on comparison result
                             if char in guessed_letters:
                                 if guessed_letters[char] == "Green":
-                                    color = GREEN
+                                    colour = GREEN
                                 elif guessed_letters[char] == "Yellow":
-                                    color = YELLOW
+                                    colour = YELLOW
                                 elif guessed_letters[char] == "Grey":   
-                                    color = GREY
+                                    colour = GREY
                             else:
-                                color = BACKGROUND_COLOR  # Default color
-                            pygame.draw.rect(screen, color, (key_x, key_y, cell_width, cell_height))
-                            pygame.draw.rect(screen, GRID_COLOR, (key_x, key_y, cell_width, cell_height), border_width)
-                            text = font.render(char, True, TEXT_COLOR)
+                                colour = BACKGROUND_COLOUR  # Default colour
+                            pygame.draw.rect(screen, colour, (key_x, key_y, cell_width, cell_height))
+                            pygame.draw.rect(screen, GRID_COLOUR, (key_x, key_y, cell_width, cell_height), border_width)
+                            text = font.render(char, True, TEXT_COLOUR)
                             text_rect = text.get_rect(center=(key_x + cell_width // 2, key_y + cell_height // 2))
                             screen.blit(text, text_rect)
 
@@ -279,16 +279,16 @@ while running:
                     if row >= grid_height and game_won == False:
                         game_lost = True
                         # Display the word and end the game
-                        screen.fill(BACKGROUND_COLOR)
-                        text = font.render("You lost! The word was: " + todays_word, True, TEXT_COLOR)
+                        screen.fill(BACKGROUND_COLOUR)
+                        text = font.render("You lost! The word was: " + todays_word, True, TEXT_COLOUR)
                         text_rect = text.get_rect(center=(screen.get_width()/2, screen.get_height()/2))
                         screen.blit(text, text_rect)
                         pygame.display.update()
                         break
                     elif game_won == True:
                         # Display the word and end the game
-                        screen.fill(BACKGROUND_COLOR)
-                        text = font.render("You won! The word was: " + todays_word, True, TEXT_COLOR)
+                        screen.fill(BACKGROUND_COLOUR)
+                        text = font.render("You won! The word was: " + todays_word, True, TEXT_COLOUR)
                         text_rect = text.get_rect(center=(screen.get_width()/2, screen.get_height()/2))
                         screen.blit(text, text_rect)
                         pygame.display.update()
